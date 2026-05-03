@@ -96,7 +96,7 @@ const Cart = () => {
                         ) as HTMLInputElement;
                         if (drawer) drawer.checked = false;
                     }}
-                    href="/cart"
+                    href="/order"
                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                     Checkout

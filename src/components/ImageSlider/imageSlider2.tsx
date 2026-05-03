@@ -15,7 +15,7 @@ const ImageSlider2 = ({ product }: { product: any }) => {
 
     return (
         <>
-            <div className="flex flex-col-reverse md:flex-row gap-2.5 p-3 bg-white w-full">
+            <div className="flex flex-col-reverse md:flex-row gap-2 w-full">
                 {/* ── Thumbnails ── */}
                 <Swiper
                     onSwiper={setThumbsSwiper}
@@ -50,7 +50,7 @@ const ImageSlider2 = ({ product }: { product: any }) => {
                 </Swiper>
 
                 {/* ── Main Slider ── */}
-                <div className="relative flex-1 rounded-xl overflow-hidden border border-stone-100">
+                <div className="relative flex-1 rounded-xl overflow-hidden ">
                     <Swiper
                         modules={[Thumbs, Autoplay, Zoom]}
                         thumbs={{ swiper: thumbsSwiper }}

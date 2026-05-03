@@ -15,6 +15,13 @@ const Page = () => {
 
     const router = useRouter();
 
+    // ── Token helper ──────────────────────────────────────────────
+    const getToken = () =>
+        document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("accessToken="))
+            ?.split("=")[1];
+
     // ✅ handle image preview
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -66,6 +73,7 @@ const Page = () => {
                 {
                     method: "POST",
                     body: formData,
+                    headers: { Authorization: ` ${getToken()}` },
                 },
             );
 

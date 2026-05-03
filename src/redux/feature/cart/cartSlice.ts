@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { clear } from "console";
 
 interface IProduct {
     id: number;
@@ -62,10 +63,18 @@ const cartSlice = createSlice({
                 state.total -= action.payload.discountPrice;
             }
         },
+        clearCart: (state) => {
+            state.products = [];
+            state.total = 0;
+        },
     },
 });
 
-export const { addProductToCart, removeProductFromCart, removeOneProduct } =
-    cartSlice.actions;
+export const {
+    addProductToCart,
+    removeProductFromCart,
+    removeOneProduct,
+    clearCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

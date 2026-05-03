@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { use, useEffect, useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoMdCall } from "react-icons/io";
 import NavBar2 from "./NavBar2";
 import { useGetAllProductsQuery } from "@/redux/api/productsApi";
 import Categories from "@/components/Categories/Categories";
@@ -10,37 +10,19 @@ const NavBar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showNavBar2, setShowNavBar2] = useState(true);
     const [scrolled, setScrolled] = useState(false);
+    const [isSmall, setIsSmall] = useState(false);
 
-    // let lastScrollTop = 0;
+    // ✅ CHANGE 1: screen size detect
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmall(window.innerWidth < 768); // md breakpoint
+        };
 
-    // const { data } = useGetAllProductsQuery({});
+        handleResize();
+        window.addEventListener("resize", handleResize);
 
-    // // Extract unique categories
-    // // const uniqueCategories = data
-    // //     ? [...new Set(data.products.map((product: any) => product.category))]
-    // //     : [];
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const currentScroll = window.pageYOffset;
-    //         console.log(currentScroll);
-
-    //         if (currentScroll > lastScrollTop) {
-    //             setShowNavBar2(false);
-    //         } else {
-    //             setShowNavBar2(true);
-    //         }
-
-    //         setScrolled(currentScroll > 0);
-
-    //         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    //     };
-
-    //     window.addEventListener("scroll", handleScroll);
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -55,13 +37,13 @@ const NavBar = () => {
     }, []);
 
     return (
-        <div className="bg-white shadow-lg">
+        <div className="bg-transparent shadow-lg">
             <div
                 className={`transition-all duration-300 ease-in-out ${
                     showNavBar2
                         ? "max-h-[200px] opacity-100"
-                        : "max-h-0 opacity-0"
-                }`}
+                        : "max-h-0 opacity-0 overflow-hidden"
+                } ${isSmall ? "fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md shadow-md" : ""}`}
             >
                 {showNavBar2 && <NavBar2 />}
             </div>
@@ -72,7 +54,7 @@ const NavBar = () => {
             <div
                 className={`w-full mx-auto hidden md:flex justify-between items-center px-6 py-3 text-gray-700 ${
                     scrolled
-                        ? "fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
+                        ? "fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md shadow-md"
                         : null
                 } transition-all duration-300 ease-in-out`}
             >
@@ -86,11 +68,23 @@ const NavBar = () => {
                     </Link>
                     <Link
                         className="flex items-center transition-colors"
-                        href="/products/beauty"
+                        href="/products/T-Shirt"
                     >
-                        Beauty
+                        T-Shirt
                     </Link>
-                    <div className="flex items-center transition-colors">
+                    <Link
+                        className="flex items-center transition-colors"
+                        href="/products/Pant"
+                    >
+                        Pant
+                    </Link>
+                    <Link
+                        className="flex items-center transition-colors"
+                        href="/products/Jersey"
+                    >
+                        Jersey
+                    </Link>
+                    {/* <div className="flex items-center transition-colors">
                         <div className="dropdown dropdown-hover">
                             <div
                                 tabIndex={0}
@@ -120,8 +114,8 @@ const NavBar = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="flex items-center transition-colors">
+                    </div> */}
+                    {/* <div className="flex items-center transition-colors">
                         <div className="dropdown dropdown-hover">
                             <div
                                 tabIndex={0}
@@ -161,8 +155,8 @@ const NavBar = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="flex items-center transition-colors">
+                    </div> */}
+                    {/* <div className="flex items-center transition-colors">
                         <div className="dropdown dropdown-hover">
                             <div
                                 tabIndex={0}
@@ -192,31 +186,34 @@ const NavBar = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <Link
+                    {/* <Link
                         className="flex items-center transition-colors"
                         href="/products/sunglasses"
                     >
                         Sunglasses
-                    </Link>
+                    </Link> */}
                     <Link
                         className="flex items-center transition-colors"
-                        href="/products"
+                        href="/products/all"
                     >
                         Shop all
                     </Link>
                     <Link
                         className="flex items-center transition-colors"
-                        href=""
+                        href="/products/all"
                     >
                         Offers <IoIosArrowDown className="ml-1" />
                     </Link>
                 </div>
 
                 {/* Support Center Link */}
-                <div className="font-semibold transition-colors cursor-pointer">
-                    Support Center
+                <div className="flex justify-center items-center font-semibold transition-colors cursor-pointer">
+                    <span className="font-bold text-xl text-gray-900 mr-1">
+                        <IoMdCall />
+                    </span>
+                    <h1>+8801638744151</h1>
                 </div>
             </div>
         </div>

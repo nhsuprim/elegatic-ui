@@ -5,7 +5,7 @@ import { axiosBaseQuery } from "../axios/axiosFetch";
 export const baseApi = createApi({
     reducerPath: "api",
     baseQuery: axiosBaseQuery({
-        baseUrl: "http://localhost:8000/api/v1",
+        baseUrl: "https://elegatic-api-2lya.vercel.app/api/v1",
     }),
     tagTypes: ["Category"],
     endpoints: (builder) => ({}),

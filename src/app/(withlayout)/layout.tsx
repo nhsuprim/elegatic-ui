@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-
 import NavBar from "@/components/Shared/Header/NavBar";
 import Footer from "@/components/Shared/Footer/page";
+import ContactPage from "@/components/ContactPage/ContactPage";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -14,12 +14,11 @@ export default function WithLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body>
-                <NavBar />
-                {children}
-                <Footer />
-            </body>
-        </html>
+        <>
+            <NavBar />
+            {children}
+            <ContactPage />
+            <Footer />
+        </>
     );
 }

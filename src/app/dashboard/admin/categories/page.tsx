@@ -17,11 +17,21 @@ const Page = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [openModal, setOpenModal] = useState(false);
 
+    // ── Token helper ──────────────────────────────────────────────
+    const getToken = () =>
+        document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("accessToken="))
+            ?.split("=")[1];
+
     useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const res = await fetch(
-                    "http://localhost:8000/api/v1/category",
+                    `${process.env.NEXT_PUBLIC_API_URL}/category`,
+                    {
+                        headers: { Authorization: ` ${getToken()}` },
+                    },
                 );
                 const data = await res.json();
                 setCategoryData(data.data);
@@ -38,8 +48,11 @@ const Page = () => {
     const handleDelete = async (id: string) => {
         try {
             const res = await fetch(
-                `http://localhost:8000/api/v1/category/${id}`,
-                { method: "DELETE" },
+                `${process.env.NEXT_PUBLIC_API_URL}/category/${id}`,
+                {
+                    method: "DELETE",
+                    headers: { Authorization: ` ${getToken()}` },
+                },
             );
 
             if (res.ok) {
@@ -53,13 +66,17 @@ const Page = () => {
         }
     };
 
-    if (isLoading) {
+    if (isLoading)
         return (
-            <div className="flex justify-center items-center h-full">
-                <LoadingSpinner size="xl" color="border-gray-500" />
+            <div className="min-h-screen flex items-center justify-center bg-stone-50">
+                <div className="flex flex-col items-center gap-3">
+                    <span className="loading loading-spinner loading-lg text-stone-400"></span>
+                    <p className="text-sm text-stone-400 tracking-wide">
+                        Loading orders...
+                    </p>
+                </div>
             </div>
         );
-    }
 
     return (
         <div>

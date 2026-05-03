@@ -1,28 +1,50 @@
 import FadeInUp from "@/components/FremerMotion/FadeInUp";
-import HowItWorks from "@/components/HowItWorks/HowItWorks";
-import PromoCard from "@/components/HomeComponent/PromoCard/PromoCard";
-import PromotionalOffers from "@/components/HomeComponent/PromotionalOffer/PromoOffer";
-import Slider from "@/components/Slider/Slider";
-import TopCategories from "@/components/HomeComponent/TopCategories/TopCategories";
-import TopProducts from "@/components/HomeComponent/TopProducts/TopProducts";
 import FeaturedProduct from "@/components/HomeComponent/FeaturedProduct/FeaturedProduct";
+import BannerPage from "@/components/HomeComponent/BannerPage/BannerPage";
+import NewArrival from "@/components/HomeComponent/NewArrival/NewArrival";
+import Image from "next/image";
+import BannerImg1 from "../../images//bannerImg/Banner_Design_1 .png";
+import { generateSEO } from "@/lib/metadata";
+
+export const metadata = generateSEO({
+    title: "",
+    description: "আমাদের সাইটে স্বাগতম...",
+    url: `${process.env.NEXT_PUBLIC_UI_URL}/`,
+});
 
 const HomePage = () => {
     return (
-        <div className="container mx-auto mt-4 min-h-screen">
-            {/* <Slider /> */}
-            {/* <TopCategories /> */}
-            {/* <FeaturedProduct />
+        <div className="bg-base-200">
+            <div className="container mx-auto min-h-screen space-y-10 md:space-y-32 py-6 md:py-10">
+                {/* <Slider /> */}
+                {/* <TopCategories /> */}
+                {/* <FeaturedProduct />
             <PromotionalOffers /> */}
-            <FadeInUp>
-                <FeaturedProduct />
-            </FadeInUp>
-            {/* <PromoCard />
+                <BannerPage />
+                <FadeInUp>
+                    <FeaturedProduct />
+                </FadeInUp>
+                <FadeInUp>
+                    <NewArrival />
+                </FadeInUp>
+                <FadeInUp>
+                    <div className="relative w-full h-[100px] sm:h-[100px] md:h-[400px] lg:h-[500px]">
+                        <Image
+                            src={BannerImg1}
+                            alt="banner"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </FadeInUp>
+
+                {/* <PromoCard />
             <FadeInUp>
                 <PromotionalOffers />
             </FadeInUp> */}
-            {/* <TopProducts /> */}
-            {/* <HowItWorks /> */}
+                {/* <TopProducts /> */}
+                {/* <HowItWorks /> */}
+            </div>
         </div>
     );
 };

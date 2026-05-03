@@ -26,7 +26,7 @@ const ProductCard = ({ id }: { id: string }) => {
         );
 
     const hasDiscount =
-        product.discountPrice && product.discountPrice !== product.basePrice;
+        product?.discountPrice && product?.discountPrice !== product.basePrice;
 
     const discountPercent = hasDiscount
         ? Math.round(
@@ -38,14 +38,14 @@ const ProductCard = ({ id }: { id: string }) => {
 
     return (
         <Link
-            href={`/product/${product.id}`}
+            href={`/product/${product?.id}`}
             className="group flex flex-col h-full rounded-xl border border-stone-200 bg-white overflow-hidden hover:border-stone-400 hover:shadow-md transition-all duration-200"
         >
             {/* ── Image ── */}
             <figure className="relative aspect-[4/5] w-full overflow-hidden bg-stone-50 flex-shrink-0">
                 <Image
-                    src={product.images[0]}
-                    alt={product.title}
+                    src={product?.images[0]}
+                    alt={product?.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -62,24 +62,24 @@ const ProductCard = ({ id }: { id: string }) => {
             <div className="flex flex-col flex-1 p-3 gap-2">
                 {/* Title — সর্বোচ্চ ২ লাইন, বাকিটা ... */}
                 <h2 className="text-sm md:text-base font-medium text-stone-800 capitalize leading-snug line-clamp-2 flex-1">
-                    {product.title}
+                    {product?.title}
                 </h2>
 
                 {/* Price — সবসময় একই জায়গায় থাকবে */}
                 <div className="flex items-center gap-2">
                     <span className="text-sm md:text-base font-bold text-stone-900">
-                        ৳{product.discountPrice || product.basePrice}
+                        ৳{product?.discountPrice || product?.basePrice}
                     </span>
                     {hasDiscount && (
                         <del className="text-xs text-stone-400">
-                            ৳{product.basePrice}
+                            ৳{product?.basePrice}
                         </del>
                     )}
                 </div>
 
                 {/* Sizes */}
                 <div className="flex flex-wrap gap-1">
-                    {product.sizes.map((size: SizeType) => (
+                    {product?.sizes.map((size: SizeType) => (
                         <span
                             key={size.id}
                             className={`px-2 py-0.5 border rounded text-xs font-medium

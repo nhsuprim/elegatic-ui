@@ -48,6 +48,13 @@ const Page: React.FC = () => {
     const [images, setImages] = useState<File[]>([]);
     const [previewImages, setPreviewImages] = useState<string[]>([]);
 
+    // ── Token helper ──────────────────────────────────────────────
+    const getToken = () =>
+        document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("accessToken="))
+            ?.split("=")[1];
+
     // ✅ Category options
     const categoryOptions: CategoryOption[] =
         categoryData?.map((cat: any) => ({
@@ -59,7 +66,7 @@ const Page: React.FC = () => {
     const handleChange = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked }: any = e.target;
         setForm((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
@@ -123,10 +130,14 @@ const Page: React.FC = () => {
             formData.append("data", JSON.stringify(productData));
             images.forEach((img) => formData.append("files", img));
 
-            const res = await fetch("http://localhost:8000/api/v1/product", {
-                method: "POST",
-                body: formData,
-            });
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/product`,
+                {
+                    method: "POST",
+                    body: formData,
+                    headers: { Authorization: ` ${getToken()}` },
+                },
+            );
 
             if (res.ok) {
                 toast.success("✅ Product created successfully");
@@ -152,13 +163,17 @@ const Page: React.FC = () => {
         }
     };
 
-    if (isLoading) {
+    if (isLoading)
         return (
-            <div className="flex justify-center items-center h-screen">
-                <LoadingSpinner size="xl" color="border-gray-500" />
+            <div className="min-h-screen flex items-center justify-center bg-stone-50">
+                <div className="flex flex-col items-center gap-3">
+                    <span className="loading loading-spinner loading-lg text-stone-400"></span>
+                    <p className="text-sm text-stone-400 tracking-wide">
+                        Loading Products...
+                    </p>
+                </div>
             </div>
         );
-    }
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-xl rounded-xl">
