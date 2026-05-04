@@ -108,6 +108,7 @@ const CheckoutPage = () => {
             customerPhn: data.customerPhn,
             customerDistrict: data.customerDistrict,
             customerAddress: data.customerAddress,
+            customerEmail: data.customerEmail,
             deliveryCharge,
             ...(appliedCoupon && { couponCode: appliedCoupon }),
         };
@@ -159,7 +160,7 @@ const CheckoutPage = () => {
         );
 
     return (
-        <div className="min-h-screen bg-base-200 py-10 px-4">
+        <div className="min-h-screen bg-base-200 py-20 md:py-10 px-4">
             <div className="max-w-5xl mx-auto">
                 <h1 className="text-4xl text-center font-bold mb-6">
                     Checkout

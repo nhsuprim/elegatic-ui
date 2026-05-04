@@ -31,7 +31,7 @@ const features = [
 
 const BannerPage = () => {
     return (
-        <section className="w-full md:py-20 px-4 md:px-10 ">
+        <section className="w-full pt-20 px-4 md:px-10 ">
             {/* Heading */}
             <div className="text-center mb-10">
                 <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
@@ -44,7 +44,7 @@ const BannerPage = () => {
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="hidden md:grid grid-cols-1 lg:grid-cols-4 gap-6">
                 {features.map((item, index) => (
                     <div
                         key={index}
