@@ -139,7 +139,7 @@ const ProductPageClient = ({ params }: PageProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-base-200 px-2 sm:py-14 md:py-10">
+        <div className="min-h-screen bg-base-200 px-2 py-14 md:py-10">
             {/* Breadcrumb */}
             <ProductJsonLd product={product} />
             <BreadcrumbJsonLd
