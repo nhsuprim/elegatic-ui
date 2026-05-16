@@ -26,7 +26,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={barlow.variable}>
+        <html lang="en" className={barlow.variable} data-theme="light">
             <meta
                 name="facebook-domain-verification"
                 content={process.env.NEXT_PUBLIC_META_CONTENT}

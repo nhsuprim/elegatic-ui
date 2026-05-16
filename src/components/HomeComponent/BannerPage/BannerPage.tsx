@@ -35,8 +35,8 @@ const BannerPage = () => {
             {/* Heading */}
             <div className="text-center mb-10">
                 <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
-                    Welcome to{" "}
-                    <span className="text-indigo-600">Elegatic Store</span>
+                    Welcome to <span className="text-[#1757A7]">Elegatic</span>{" "}
+                    <span className="text-[#E6814D]">Store</span>
                 </h1>
                 <p className="text-gray-500 mt-3">
                     Premium products with modern designs & fast delivery
@@ -52,7 +52,7 @@ const BannerPage = () => {
                     >
                         <div className="flex flex-col items-center text-center">
                             {/* Icon */}
-                            <div className="w-14 h-14 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 text-3xl group-hover:scale-110 transition">
+                            <div className="w-14 h-14 flex items-center justify-center rounded-full bg-indigo-50 text-[#1757A7] text-3xl group-hover:scale-110 transition">
                                 <item.icon />
                             </div>
 

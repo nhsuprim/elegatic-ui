@@ -199,7 +199,7 @@ const NavBar2 = () => {
                             </div>
                         </div>
                         <Link
-                            href="/signin"
+                            href="/login"
                             className="text-4xl pl-2 font-semibold text-gray-700 hover:text-red-500 transition-colors"
                         >
                             <CgProfile />
