@@ -159,6 +159,10 @@ const CheckoutPage = () => {
             </div>
         );
 
+    useEffect(() => {
+        document.title = "Order - ELEGATIC";
+    }, []);
+
     return (
         <div className="min-h-screen bg-base-200 py-20 md:py-10 px-4">
             <div className="max-w-5xl mx-auto">
