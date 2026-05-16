@@ -19,6 +19,7 @@ const Cart = () => {
     const removefromCart = (product: any) => {
         dispatch(removeProductFromCart(product));
     };
+    console.log(products);
 
     return (
         <div className="menu bg-base-200 text-base-content min-h-full min-w-fit p-8">
@@ -32,7 +33,7 @@ const Cart = () => {
                 </label>
             </div>
             <div className="mt-6">
-                {products.map((product: any) => (
+                {products?.map((product: any) => (
                     <div
                         key={product.id}
                         className="flex items-center justify-between py-4 border-b border-gray-300 gap-4"

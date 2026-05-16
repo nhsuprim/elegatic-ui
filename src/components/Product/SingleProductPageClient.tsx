@@ -139,7 +139,7 @@ const ProductPageClient = ({ params }: PageProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-base-200 px-2 py-14 md:py-10">
+        <div className="min-h-screen bg-base-200 px-2 py-14 md:py-6">
             {/* Breadcrumb */}
             <ProductJsonLd product={product} />
             <BreadcrumbJsonLd
@@ -156,7 +156,7 @@ const ProductPageClient = ({ params }: PageProps) => {
                 ]}
             />
             <div className="border-b">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
+                <div className="max-w-7xl mx-auto px-4 md:px-2 py-3">
                     <nav className="flex items-center gap-2 text-sm font-semibold italic text-stone-400">
                         <span>Home</span>
                         <span>/</span>

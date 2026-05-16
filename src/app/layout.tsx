@@ -27,6 +27,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={barlow.variable}>
+            <meta
+                name="facebook-domain-verification"
+                content={process.env.NEXT_PUBLIC_META_CONTENT}
+            />
             <body>
                 <Providers>
                     <AuthProvider>
