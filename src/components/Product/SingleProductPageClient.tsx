@@ -23,6 +23,7 @@ import Link from "next/link";
 import FeaturedCarousel from "@/components/HomeComponent/FeaturedProduct/FeaturedCarousel";
 import ProductDescription from "@/components/ProductDesc/ProductDesc";
 import { BreadcrumbJsonLd, ProductJsonLd } from "../SEO/JsonLd";
+import "animate.css";
 
 interface PageProps {
     params: { id: string };
@@ -44,25 +45,25 @@ const ProductPageClient = ({ params }: PageProps) => {
 
     const trustBadges = [
         {
-            icon: <FaShieldAlt className="text-emerald-600 text-2xl" />,
+            icon: <FaShieldAlt className="text-emerald-600 " />,
             iconBg: "bg-emerald-50",
             label: "100% Authentic",
             sub: "Verified original",
         },
         {
-            icon: <FaLock className="text-blue-600 text-2xl" />,
+            icon: <FaLock className="text-blue-600 " />,
             iconBg: "bg-blue-50",
             label: "Secure Payment",
             sub: "Encrypted checkout",
         },
         {
-            icon: <FaBolt className="text-amber-600 text-2xl" />,
+            icon: <FaBolt className="text-amber-600 " />,
             iconBg: "bg-amber-50",
             label: "Fast Delivery",
             sub: "2–4 business days",
         },
         {
-            icon: <FaUndoAlt className="text-emerald-600 text-2xl" />,
+            icon: <FaUndoAlt className="text-emerald-600 " />,
             iconBg: "bg-emerald-50",
             label: "Easy Returns",
             sub: "7-day hassle-free",
@@ -288,13 +289,13 @@ const ProductPageClient = ({ params }: PageProps) => {
                                     ${
                                         selectedSize
                                             ? "bg-stone-900 text-white hover:bg-stone-700 active:scale-[0.98]"
-                                            : "bg-stone-200 text-stone-400 cursor-not-allowed"
+                                            : "bg-stone-200 text-stone-700 font-semibold cursor-not-allowed"
                                     }
                                 `}
                             >
                                 {selectedSize
                                     ? "Add to Cart"
-                                    : "Select a Size First"}
+                                    : "সাইজ সিলেক্ট করুন"}
                             </button>
                         </div>
 
@@ -343,6 +344,12 @@ const ProductPageClient = ({ params }: PageProps) => {
                                 </div>
                             </Link>
                         </div>
+                        <div className="p-2 my-2 text-center text-sm md:text-lg bg-orange-400 text-white font-semibold italic rounded-lg animate__animated animate__backInRight animate__slow">
+                            <h1>
+                                অর্ডার করার ২-৩ দিনের মধ্যে পণ্য ডেলিভারি
+                                সম্পন্ন করা হয়।
+                            </h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -356,14 +363,14 @@ const ProductPageClient = ({ params }: PageProps) => {
                     <ProductDescription text={product?.description} />
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-2">
                     {trustBadges.map((badge) => (
                         <div
                             key={badge.label}
-                            className="flex flex-col items-center text-center gap-3 bg-white border border-gray-100 shadow-sm rounded-2xl px-4 py-6"
+                            className="flex flex-col items-center text-center gap-3 bg-white border border-gray-100 shadow-sm rounded-2xl px-1 md:px-4 py-1 md:py-6 text-sm md:text-base"
                         >
                             <div
-                                className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl ${badge.iconBg}`}
+                                className={`w-14 h-14 rounded-2xl flex items-center justify-center text-sm md:text-3xl ${badge.iconBg}`}
                             >
                                 {badge.icon}
                             </div>
@@ -381,7 +388,7 @@ const ProductPageClient = ({ params }: PageProps) => {
             </div>
 
             {/* Related & New Arrival */}
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto ">
                 <div className="my-8">
                     <div className="flex justify-between items-center mx-2 py-4">
                         <h1 className="text-3xl font-bold">

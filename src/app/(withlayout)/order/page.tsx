@@ -40,6 +40,10 @@ const CheckoutPage = () => {
     const [showCouponInput, setShowCouponInput] = useState(false);
     const [couponLoading, setCouponLoading] = useState(false);
 
+    useEffect(() => {
+        document.title = "Order - ELEGATIC";
+    }, []);
+
     const subtotal = products.reduce(
         (acc: number, p: any) =>
             acc + (p.discountPrice || p.basePrice) * p.quantity,
@@ -71,6 +75,7 @@ const CheckoutPage = () => {
 
             const data = await res.json();
             const c = data.data;
+            console.log(c);
 
             if (!c.isActive) {
                 toast.error("Coupon is no longer usable");
@@ -158,10 +163,6 @@ const CheckoutPage = () => {
                 </div>
             </div>
         );
-
-    useEffect(() => {
-        document.title = "Order - ELEGATIC";
-    }, []);
 
     return (
         <div className="min-h-screen bg-base-200 py-20 md:py-10 px-4">
@@ -352,20 +353,20 @@ const CheckoutPage = () => {
 
                         {/* ===== RIGHT: Order Summary ===== */}
                         <div>
-                            <div className="card bg-neutral text-neutral-content shadow sticky top-20">
+                            <div className="card bg-blue-100 shadow sticky top-20">
                                 <div className="card-body">
-                                    <h2 className="card-title">
+                                    <h2 className="font-bold text-2xl pb-3 text-center">
                                         Order Summary
                                     </h2>
 
-                                    <p>
-                                        Subtotal:{" "}
+                                    <p className="flex justify-between">
+                                        <span>Subtotal: </span>
                                         <span className="font-semibold">
                                             ৳{subtotal.toLocaleString()}
                                         </span>
                                     </p>
-                                    <p>
-                                        Delivery:{" "}
+                                    <p className="flex justify-between">
+                                        <span>Delivery: </span>
                                         <span className="font-semibold">
                                             ৳{deliveryCharge}
                                         </span>
@@ -377,7 +378,7 @@ const CheckoutPage = () => {
                                             onClick={() =>
                                                 setShowCouponInput(true)
                                             }
-                                            className="cursor-pointer text-blue-400 text-sm"
+                                            className="cursor-pointer text-blue-400 text-sm font-semibold py-3 text-center rounded-md "
                                         >
                                             + Add Coupon
                                         </p>
@@ -427,7 +428,7 @@ const CheckoutPage = () => {
 
                                     <div className="divider my-1" />
 
-                                    <p className="text-xl font-bold">
+                                    <p className="text-xl text-end font-bold">
                                         Total: ৳{total.toLocaleString()}
                                     </p>
 
@@ -442,10 +443,10 @@ const CheckoutPage = () => {
                                         {isSubmitting ? (
                                             <span className="flex items-center gap-2">
                                                 <span className="loading loading-spinner loading-sm" />
-                                                Placing...
+                                                অর্ডার কনফার্ম হচ্ছে...
                                             </span>
                                         ) : (
-                                            "Place Order"
+                                            "অর্ডার কনফার্ম করুন"
                                         )}
                                     </button>
                                 </div>
