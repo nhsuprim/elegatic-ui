@@ -18,7 +18,7 @@ const OrderSuccessPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-base-200 flex  justify-center px-4 py-20 md:justify-center">
+        <div className="min-h-screen bg-base-200 flex justify-center px-4 py-16">
             <div
                 className={`bg-white rounded-2xl shadow-xl p-10 max-w-md w-full text-center transition-all duration-700 ease-out ${
                     visible

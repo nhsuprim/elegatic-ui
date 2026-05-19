@@ -86,7 +86,7 @@ const Cart = () => {
             </div>
             <div>
                 <h3 className="text-lg font-bold">
-                    Total: ${total.toFixed(2)}{" "}
+                    Total: ৳{total.toFixed(2)}{" "}
                 </h3>
             </div>
             <div className="mt-6 text-right">
