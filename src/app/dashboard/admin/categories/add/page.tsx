@@ -86,7 +86,7 @@ const Page = () => {
                 setSizeImage(null);
                 setSizePreview(null);
                 //redirect to category list page
-                router.push("/admin/categories");
+                router.push("/dashboard/admin/categories");
             } else {
                 toast.error("Failed to create category");
             }
@@ -100,7 +100,7 @@ const Page = () => {
             {/* Top */}
             <div className="max-w-3xl mx-auto mb-6">
                 <Link
-                    href="/admin/categories"
+                    href="/dashboard/admin/categories"
                     className="inline-block  bg-blue-900  hover:bg-blue-950 text-white px-3 py-2 font-semibold cursor-pointer rounded-md transition"
                 >
                     ← Back to Categories

@@ -43,20 +43,36 @@ const cartSlice = createSlice({
             state.total += action.payload.discountPrice;
         },
         removeProductFromCart: (state, action: PayloadAction<IProduct>) => {
-            // Remove product by its id
-            state.products = state.products.filter(
-                (product) => product.id !== action.payload.id,
+            // ✅ id এবং size দুটো match হলেই remove হবে
+            const productToRemove = state.products.find(
+                (product) =>
+                    product.id === action.payload.id &&
+                    product.size === action.payload.size,
             );
-            // Remove product if it exists
+
+            if (!productToRemove) return;
+
+            // ✅ total থেকে সেই product-এর মোট price বাদ দাও
+            state.total -=
+                productToRemove.discountPrice * (productToRemove.quantity || 1);
+
+            state.products = state.products.filter(
+                (product) =>
+                    !(
+                        product.id === action.payload.id &&
+                        product.size === action.payload.size
+                    ),
+            );
+
             if (state.products.length === 0) {
                 state.total = 0;
-            } else {
-                state.total -= action.payload.discountPrice;
             }
         },
         removeOneProduct: (state, action: PayloadAction<IProduct>) => {
             const existingProduct = state.products.find(
-                (product) => product.id === action.payload.id,
+                (product) =>
+                    product.id === action.payload.id &&
+                    product.size === action.payload.size, // ✅ size যোগ করো
             );
             if (existingProduct && existingProduct.quantity! > 1) {
                 existingProduct.quantity! -= 1;

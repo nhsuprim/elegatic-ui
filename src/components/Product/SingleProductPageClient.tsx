@@ -175,7 +175,7 @@ const ProductPageClient = ({ params }: PageProps) => {
                 <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
                     {/* Left: Image Slider */}
                     <div className="w-full lg:w-[52%] flex-shrink-0">
-                        <div className="rounded-2xl overflow-hidden">
+                        <div className=" overflow-hidden">
                             <ImageSider2 product={product} />
                         </div>
                     </div>

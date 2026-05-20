@@ -19,7 +19,6 @@ const Cart = () => {
     const removefromCart = (product: any) => {
         dispatch(removeProductFromCart(product));
     };
-    console.log(products);
 
     return (
         <div className="menu bg-base-200 text-base-content min-h-full min-w-fit p-8">
@@ -49,7 +48,7 @@ const Cart = () => {
                                     {product.title}
                                 </h3>
                                 <p className="text-sm text-gray-500">
-                                    Total Price: $
+                                    Total Price: ৳
                                     {(
                                         product.discountPrice * product.quantity
                                     ).toFixed(2)}

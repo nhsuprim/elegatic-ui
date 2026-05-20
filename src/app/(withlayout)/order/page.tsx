@@ -50,16 +50,20 @@ const CheckoutPage = () => {
         0,
     );
 
-    const total = Math.round(Math.max(subtotal + deliveryCharge - discount, 0));
+    const total = Number(
+        Math.round(
+            Math.max(subtotal + deliveryCharge - Number(discount || 0), 0),
+        ),
+    );
 
     // ✅ Pixel — InitiateCheckout: Page load হলে একবার fire হবে
     useEffect(() => {
         if (products.length > 0) {
             pixelEvent("InitiateCheckout", {
-                value: subtotal,
+                value: Number(subtotal.toFixed(2)),
                 currency: "BDT",
                 num_items: products.length,
-                content_ids: products.map((p: any) => p.id),
+                content_ids: products.map((p: any) => String(p.id)),
             });
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -136,17 +140,23 @@ const CheckoutPage = () => {
             const result = await res.json();
 
             // ✅ Pixel — Purchase: Order সফল হলে fire হবে
-            pixelEvent("Purchase", {
-                value: total,
-                currency: "BDT",
-                num_items: products.length,
-                content_ids: products.map((p: any) => p.id),
-                order_id: result?.data?.id,
-            });
+            if (total > 0) {
+                pixelEvent("Purchase", {
+                    value: Number(total.toFixed(2)),
+                    currency: "BDT",
+                    num_items: products.length,
+                    content_ids: products.map((p: any) => String(p.id)),
+                    order_id: result?.data?.id,
+                });
+            }
 
             dispatch(clearCart());
-            toast.success("অর্ডার সফল হয়েছে! 🎉");
-            router.push(`/order/order-success?orderId=${result?.data?.id}`);
+
+            setTimeout(() => {
+                dispatch(clearCart());
+                toast.success("অর্ডার সফল হয়েছে! 🎉");
+                router.push(`/order/order-success?orderId=${result?.data?.id}`);
+            }, 800);
         } catch (err: any) {
             toast.error(err.message || "অর্ডার করতে সমস্যা হয়েছে");
         }
